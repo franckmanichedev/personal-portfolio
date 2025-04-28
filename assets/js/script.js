@@ -74,29 +74,24 @@ window.onscroll = () => {
 
 
 /*========== dark light mode ==========*/
-let darkModeIcon = document.querySelector('#darkMode-icon');
+let darkModeIconDesktop = document.querySelector('#darkMode-icon');
+let darkModeIconMobile = document.querySelector('#darkMode-icon-mobile');
 
 // theme toggle variables
 const themeBtn = document.querySelectorAll('.theme-btn');
 
+// Fonction pour basculer entre les thèmes
+function toggleTheme() {
+    document.body.classList.toggle('light-theme');
+    document.body.classList.toggle('dark-theme');
 
-themeBtn.forEach ((btn) => {
-
-    btn.addEventListener('click', () => {
-
-        document.body.classList.toggle('light-theme');
-        document.body.classList.toggle('dark-theme');
-
-        themeBtn.forEach((btn) => {
-
-            btn.classList.toggle('light');
-            btn.classList.toggle('dark');
-
-        });
-        localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+    themeBtn.forEach((btn) => {
+        btn.classList.toggle('light');
+        btn.classList.toggle('dark');
     });
-
-});
+    // Enregistrer le thème dans le stockage local
+    localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+}
 
 // Verifier si le mode sombre est active au chargement de la page
 if(localStorage.getItem('theme') === 'dark'){
@@ -107,7 +102,10 @@ if(localStorage.getItem('theme') === 'dark'){
     });
 }
 
-darkModeIcon.addEventListener('click', () => {
-    darkModeIcon.classList.toggle('bx-sun');
-    document.body.classList.toggle('dark-mode');
-});
+// Ajouter un écouteur d'événement pour le bouton de changement de thème
+if(darkModeIconDesktop){
+    darkModeIconDesktop.addEventListener('click', toggleTheme);
+}
+if(darkModeIconMobile){
+    darkModeIconMobile.addEventListener('click', toggleTheme);
+}
