@@ -1216,12 +1216,21 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
 }
 
 .portfolio-content .card{
+    position: relative;
     height: 225px;
     padding: 20px;
     border-left: 1px solid var(--main-color);
     border-right: 1px solid var(--main-color);
     border-bottom: 1px solid var(--main-color);
     border-radius: 0 0 30px 30px;
+    background: var(--white-color);
+    box-shadow: 0 0.5em 1rem rgba(0, 0, 0, .1);
+    transition: transform .5s ease, box-shadow .5s ease;
+}
+
+.portfolio-content .card:hover {
+    transform: translateY(-5px); /* Légère élévation au survol */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); /* Ombre plus marquée */
 }
 
 .portfolio-card .card h4{
@@ -1229,6 +1238,7 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     font-size: 20px;
     margin-bottom: 10px;
     font-weight: bold;
+    text-align: left;
 }
 
 .portfolio-card .card ul li {
@@ -1239,15 +1249,61 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     text-align: left;
 }
 
-.portfolio-card .card a{
+.card .link{
+    position: absolute;
+    bottom: 10px;
+    left: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.card a{
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 3em;
-    height: 3em;
-    background: var(--white-color);
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: var(--white-color);
     background: var(--text-color);
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2); 
+    transition: .3s ease;
+}
+
+.portfolio-card .card a.absolute-link{
+    position: absolute;
+    bottom: 10px;
+    left: auto;
+}
+
+.card .link a:hover,
+.portfolio-card .card a:hover{
+    background: var(--main-color); /* Change la couleur de fond au survol */
+    color: var(--white-color); /* Change la couleur de l'icône au survol */
+}
+
+.portfolio-card .card:hover a {
+    transform: scale(1.1);
+}
+
+.card .link a:active,
+.portfolio-card .card a:active{
+    transform: scale(0.91);
+}
+
+.card .link a:focus,
+.portfolio-card .card a:focus {
+    background: var(--main-color);
+    outline-offset: 2px;
+    color: var(--white-color);
 }
 
 .face {
