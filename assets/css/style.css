@@ -1430,12 +1430,14 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
 .single-contact-add-info i {
     font-size: 30px;
     color: var(--text-color);
+    border: 2px solid var(--text-color);
+    /* background: none; */
     flex-shrink: 0;
     background-color: rgba(0, 0, 0, .2);
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     padding: 25px;
