@@ -11,6 +11,8 @@
 /*========== scroll sections active link ==========*/
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
+// const typeProjet = document.querySelector('.type-projet');
+const paragraphesProjet = document.querySelectorAll('.type-projet p');
 
 window.onscroll = () => {
     sections.forEach(sec => {
@@ -71,6 +73,25 @@ window.onscroll = () => {
     ScrollReveal().reveal('.home-content h1, .about-img img', { origin: 'left' });
     ScrollReveal().reveal('.home-content h3, .home-content p, .about-content', { origin: 'right' })
 };
+
+/*========== portfolio change ==========*/
+
+function determinerPortfolio(classe){
+    const elements = document.querySelectorAll('.portfolio-card');
+    paragraphesProjet.forEach((p) => p.classList.remove('active-projet'));
+    const item = event.target;
+    
+    item.classList.add('active-projet');
+    elements.forEach((element)=>{
+        if(classe === 'all'){
+            element.style.display = 'block';
+        }else if(element.classList.contains(classe)){
+            element.style.display = 'block';
+        }else{
+            element.style.display = 'none';
+        }
+    });
+}
 
 
 /*========== dark light mode ==========*/
