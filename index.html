@@ -45,6 +45,9 @@
         
         <!--responsive.css-->
         <link rel="stylesheet" href="assets/css/responsive.css">
+		
+		<!-- Swiper CSS -->
+		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
     </head>
 	
@@ -835,7 +838,7 @@
 							<a href="https://www.zts-institut.com/" target="_blank" class="absolute-link"><i class='bx bx-link-external'></i></a>
 						</div>
 					</div>
-					<div class="portfolio-card back-end">4
+					<div class="portfolio-card back-end">
 						<div class="portfolio-box projet">
 							<div class="face avant">
 								<img src="assets/images/portfolio/banniere-Kongs-services.png" alt="">
@@ -880,7 +883,7 @@
 						<div class="col-md-offset-1 col-md-5 col-sm-6">
 							<div class="single-contact-box">
 								<div class="contact-form">
-									<form>
+									<form action="" method="post" id="contact-form">
 										<div class="row">
 											<div class="col-sm-6 col-xs-12">
 												<div class="form-group">
@@ -907,10 +910,11 @@
 												</div>
 											</div>
 										</div>
+										<p class="message" style="display: none;">Petite erreur</p>
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="single-contact-btn">
-													<a class="contact-btn btn" href="#" role="button">submit</a>
+													<button class="contact-btn btn" role="button" type="submit">submit</button>
 												</div>
 											</div>
 										</div>
@@ -1023,10 +1027,14 @@
 		<!--owl.carousel.js-->
         <script src="assets/js/owl.carousel.min.js"></script>
 
+		<!-- ScrollReveal JS -->
+		<!-- <script src="https://unpkg.com/scrollreveal"></script> -->
+
+		<!-- Swiper JS -->
+		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 		
-        
         <!--Custom JS-->
         <script src="assets/js/custom.js"></script>
 
@@ -1034,5 +1042,4 @@
         <script src="assets/js/script.js"></script>
         
     </body>
-	
 </html>

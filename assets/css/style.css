@@ -1421,7 +1421,7 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
 .projet:hover .arriere {
     transform: rotateY(0deg);
 }
-  
+
 
 /*-------------------------------------
         10. Clients
@@ -1448,7 +1448,7 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     background: var(--bg-section);
     padding: 50px 0 100px;
 }
-.single-contact-box {padding: 100px 10px; border: 1px solid var(--main-color);}
+.single-contact-box {padding: 100px 10px;}
 .contact-form  .form-group {
     margin-bottom: 20px;
 }
@@ -1476,6 +1476,12 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     text-transform:capitalize;
     margin-top: 3px;
     width: 100%;
+}
+
+.contact-form form .message{
+    margin-top: 5px;
+    font-size: 14px;
+    text-align: center;
 }
 
 .contact-form .info{

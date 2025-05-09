@@ -24,15 +24,19 @@ window.onscroll = () => {
         if(top >= offset && top < offset + height) {
             navLinks.forEach(links => {
                 links.classList.remove('active');
-                document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
             });
+            if(id){
+                let activeLink = document.querySelector('header nav a[href*=' + id + ']');
+                if(activeLink){
+                    activeLink.classList.add('active');
+                };
+            };
         };
     });
 
 
     /*========== sticky navbar ==========*/
-    let header = document.querySelector('.header');
-
+    let header = document.querySelector('header');
     header.classList.toggle('sticky', window.scrollY > 100);
 
 
@@ -130,3 +134,105 @@ if(darkModeIconDesktop){
 if(darkModeIconMobile){
     darkModeIconMobile.addEventListener('click', toggleTheme);
 }
+
+/*========== email-contact-verification ==========*/
+
+const form = document.getElementById('contact-form');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const submitButton = document.getElementById('subject');
+const commentInput = document.getElementById('comment');
+const message = document.querySelector('.message');
+
+// Fonction pour vérifier si l'email est valide
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Fonction pour afficher un message d'erreur
+function showError(errorMessage) {
+    message.textContent = errorMessage;
+    message.style.color = 'red';
+    message.style.display = 'block';
+    setInterval(() => {
+        message.style.display = 'none';
+    }, 5000);
+}
+
+// Fonction pour afficher un message de succès
+function showSuccess(successMessage) {
+    message.textContent = successMessage;
+    message.style.color = 'green';
+    message.style.display = 'block';
+    setInterval(() => {
+        message.style.display = 'none';
+    }, 5000);
+}
+
+function checkEmailExists(email) {
+    const apiKey = "01420130d22c46088e948d87b5633df3";
+    fetch(`https://emailvalidation.abstractapi.com/v1/?api_key=${apiKey}&email=${email}`)
+    .then(response => response.json())
+    .then(data => {
+        if (data.deliverability === "DELIVERABLE"){
+            showSuccess("L\'email est valide et existe.");
+        } else {
+            showError("L\'email n\'est pas valide ou n\'existe pas.");
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        showError("Une erreur est survenue lors de la vérification de l\'email.");
+    });
+}
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Vérifiez si emailInput est correctement sélectionné
+    if (!emailInput) {
+        console.error("L'élément avec l'ID 'email' est introuvable dans le DOM.");
+        showError("Une erreur interne est survenue.");
+        return;
+    }
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const subject = submitButton.value.trim();
+    const comment = commentInput.value.trim();
+
+    if (name === '' || email === '' || subject === '' || comment === '') {
+        showError("Veuillez remplir tous les champs.");
+        return;
+    }
+
+    if (!isValidEmail(email)) {
+        showError("Veuillez entrer une adresse email valide.");
+        return;
+    }
+
+    checkEmailExists(email);
+
+    // Envoyer l'email
+    fetch('http://localhost:3000/send-mail', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, subject, comment })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            showError(data.error);
+        } else {
+            showSuccess(data.message);
+            form.reset();
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        showError("Une erreur est survenue lors de l'envoi de l'email.");
+    });
+});
