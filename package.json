@@ -2,10 +2,11 @@
   "name": "my-protfolio",
   "version": "1.0.0",
   "description": "Création de mon portfolio personnel pour présenter mes différentes compétences et services que je pourrait offrir à un particulier pour l'accompagner dans ses projets",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "nodemailer": "^7.0.3",
+    "nodemailer": "^7.0.3"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.10"
   }
 }
