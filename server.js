@@ -2,10 +2,30 @@ import express from 'express';
 import nodemailer from 'nodemailer';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import path from 'path';
+import {fileURLToPath} from 'url'; // Necessaire pour obtenir le chemin du fichier actuel
 
+// Configuration pour obtenir __dirname dans les modules ES
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Initialisation de l'application Express
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+
+// Servir les fichiers statiques
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+
+// Route par défaut pour servir le fichier index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Capture toutes les pages non trouvées et redirige vers index.html
+app.use((req, res) => {
+    res.status(404).send("Page non trouvée");
+});
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',

@@ -176,7 +176,8 @@ function checkEmailExists(email) {
     .then(response => response.json())
     .then(data => {
         if (data.deliverability === "DELIVERABLE"){
-            showSuccess("L\'email est valide et existe.");
+            // showSuccess("L\'email est valide et existe.");
+            console.log("L\'email est valide et existe.");
         } else {
             showError("L\'email n\'est pas valide ou n\'existe pas.");
         }
