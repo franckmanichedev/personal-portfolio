@@ -215,7 +215,7 @@ form.addEventListener('submit', (e) => {
     checkEmailExists(email);
 
     // Envoyer l'email
-    fetch('http://localhost:3000/send-mail', {
+    fetch('https://personal-portfolio-backend-kowj.onrender.com/send-mail', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
