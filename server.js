@@ -24,11 +24,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Capture toutes les pages non trouvées et redirige vers index.html
-app.use((req, res) => {
-    res.status(404).send("Page non trouvée");
-});
-
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
@@ -70,6 +65,11 @@ app.post('/send-mail', (req, res) => {
         console.log('Email envoyé:', info.response);
         res.status(200).json({ message: 'Email envoyé avec succès !' });
     });
+});
+
+// Capture toutes les pages non trouvées et redirige vers index.html
+app.use((req, res) => {
+    res.status(404).send("Page non trouvée");
 });
 
 app.listen(PORT, () => {
