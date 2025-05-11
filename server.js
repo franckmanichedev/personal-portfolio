@@ -5,6 +5,8 @@ import cors from 'cors';
 import path from 'path';
 import {fileURLToPath} from 'url'; // Necessaire pour obtenir le chemin du fichier actuel
 
+const PORT = process.env.PORT || 3000;
+
 // Configuration pour obtenir __dirname dans les modules ES
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -70,7 +72,6 @@ app.post('/send-mail', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
