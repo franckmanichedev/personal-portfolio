@@ -46,9 +46,8 @@ async function createTransporter(){
             secure: false,
             auth: {
                 type: 'OAuth2',
-                // user: process.env.EMAIL_USER,
+                user: process.env.EMAIL_USER,
                 // pass: process.env.EMAIL_PASS,
-                user: 'franckmaniche6@gmail.com',
                 clientId: CLIENT_ID,
                 clientSecret: CLIENT_SECRET,
                 refreshToken: REFRESH_TOKEN,
