@@ -10,10 +10,10 @@ import {fileURLToPath} from 'url'; // Necessaire pour obtenir le chemin du fichi
 
 
 const PORT = process.env.PORT || 3000;
-const CLIENT_ID = process.env.CLIENT_ID || '545581657563-8eng1p6msj17a7ec2j1gqgto1ct4opdl.apps.googleusercontent.com';
-const CLIENT_SECRET = process.env.CLIENT_SECRET || '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';
-const REDIRECT_URI = process.env.REDIRECT_URI || 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = process.env.REFRESH_TOKEN || '1//04tll4n_jxygECgYIARAAGAQSNwF-L9IrViqjfkJFpWW9j_g5CronASyX6gOg7QR0XPlld-frL9gnftzy88wIrL6zno7gTD2pQpY';
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
@@ -49,7 +49,6 @@ async function createTransporter(){
                 // user: process.env.EMAIL_USER,
                 // pass: process.env.EMAIL_PASS,
                 user: 'franckmaniche6@gmail.com',
-                // pass: 'uvtp yzvp nzgt ogle',
                 clientId: CLIENT_ID,
                 clientSecret: CLIENT_SECRET,
                 refreshToken: REFRESH_TOKEN,
@@ -75,7 +74,6 @@ app.post('/send-mail', async (req, res) => {
         from: 'FRANCK MANICHE 😅 <franckmaniche6@gmail.com>',
         to: 'franckmaniche6@gmail.com',
         subject: subject,
-        text: 'Juste un message de test',
         html: `
             <h3>Bonjour Maniche Franck,</h3>
             <p>Vous avez reçu un message de ${name}.</p>
