@@ -73,7 +73,7 @@ app.post('/send-mail', async (req, res) => {
 
     const mailOptions = {
         from: 'FRANCK MANICHE 😅 <franckmaniche6@gmail.com>',
-        to: 'skillsformodernity@gmail.com',
+        to: 'franckmaniche6@gmail.com',
         subject: subject,
         text: 'Juste un message de test',
         html: `
